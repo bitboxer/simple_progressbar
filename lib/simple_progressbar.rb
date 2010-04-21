@@ -8,24 +8,22 @@ class SimpleProgressbar
   end
 
   def progress(percent)
-    print "\e[19D"
+    print "\e[18D"
     render_progress(percent)
   end
 
   private
 
   def render_progress(percent)
-    line = "["
+    print "["
 
-    for i in 0..(percent/10).to_i
-      line += "*"
+    (percent/10).to_i.times do 
+      print "*" 
     end
-    for i in (percent/10).to_i..9
-      line += " "
+    (10 - (percent/10).to_i).times do 
+      print " " 
     end
-
-    line += "]\e[32m#{'%4s' % percent}\e[0m %"
-    print line
+    print "]\e[32m#{'%4s' % percent}\e[0m %"
     STDOUT.flush
   end
 
