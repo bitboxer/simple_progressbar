@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{simple_progressbar}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bodo Tasche"]
@@ -22,7 +22,6 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "lib/simple_progressbar.rb",
-     "pkg/simple_progressbar-0.1.0.gem",
      "simple_progressbar.gemspec",
      "test/helper.rb",
      "test/test_simple_progressbar.rb"
