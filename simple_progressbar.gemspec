@@ -17,13 +17,13 @@ Gem::Specification.new do |s|
      "README.rdoc"
   ]
   s.files = [
-    ".document",
-     ".gitignore",
-     "LICENSE",
+    "LICENSE",
      "README.rdoc",
      "Rakefile",
      "VERSION",
      "lib/simple_progressbar.rb",
+     "pkg/simple_progressbar-0.1.0.gem",
+     "simple_progressbar.gemspec",
      "test/helper.rb",
      "test/test_simple_progressbar.rb"
   ]
