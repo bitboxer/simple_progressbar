@@ -7,7 +7,7 @@ class SimpleProgressbar
     finish_progress
   end
 
-  def set_progress(percent)
+  def progress(percent)
     print "\e[19D"
     render_progress(percent)
   end

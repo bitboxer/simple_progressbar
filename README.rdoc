@@ -10,7 +10,7 @@ Usage:
     
     SimpleProgressbar.new.show("Installing stuff") do
       (0..10).each {|i|
-        set_progress i*10
+        progress i*10
         sleep(1)
       }  
     end
