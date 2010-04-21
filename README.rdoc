@@ -2,6 +2,8 @@
 
 A small and simple progressbar for little terminal scripts.
 
+http://img688.imageshack.us/img688/2820/progresse.png
+
 Usage:
 
     require 'simple_progressbar'
