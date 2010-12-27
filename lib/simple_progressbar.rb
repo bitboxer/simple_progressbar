@@ -3,6 +3,8 @@ class SimpleProgressbar
   def show(title, &block)
     print title + " "
     start_progress
+    # thanks to http://www.dcmanges.com/blog/ruby-dsls-instance-eval-with-delegation
+    @self_before_instance_eval = eval "self", block.binding
     instance_eval(&block)
     finish_progress
   end
@@ -10,6 +12,10 @@ class SimpleProgressbar
   def progress(percent)
     print "\e[18D"
     render_progress(percent)
+  end
+
+  def method_missing(method, *args, &block)
+    @self_before_instance_eval.send method, *args, &block
   end
 
   private
