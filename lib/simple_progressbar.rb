@@ -1,15 +1,30 @@
 class SimpleProgressbar
   def initialize
     @last_length = 0
+    @title = ""
+    @progress = 0
   end
 
   def show(title, &block)
-    print title + " "
+    @title = title
+    print @title + " "
     start_progress
     # thanks to http://www.dcmanges.com/blog/ruby-dsls-instance-eval-with-delegation
     @self_before_instance_eval = eval "self", block.binding
     instance_eval(&block)
     finish_progress
+  end
+
+  def interrupt
+    # TODO: Make some of the strings constants so we don't have to use a magic number here.
+    progressbar_length = 16 + @last_length + @title.length
+    move_cursor = "\e[#{progressbar_length}D"
+    print move_cursor + (" " * progressbar_length) + move_cursor
+    STDOUT.flush
+    yield
+    puts
+    print @title + " "
+    render_progress(@progress)
   end
 
   def progress(percent)
@@ -24,6 +39,7 @@ class SimpleProgressbar
   private
 
   def render_progress(percent)
+    @progress = percent
     print "["
 
     print "*" * [(percent/10).to_i, 10].min
