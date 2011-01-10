@@ -26,12 +26,8 @@ class SimpleProgressbar
   def render_progress(percent)
     print "["
 
-    (percent/10).to_i.times do 
-      print "*"
-    end
-    (10 - (percent/10).to_i).times do 
-      print " "
-    end
+    print "*" * [(percent/10).to_i, 10].min
+    print " " * [10 - (percent/10).to_i, 0].max
 
     if percent.class != Float
       printable_percent = "%3s" % percent
