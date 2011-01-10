@@ -1,4 +1,7 @@
 class SimpleProgressbar
+  def initialize
+    @last_length = 0
+  end
 
   def show(title, &block)
     print title + " "
@@ -10,7 +13,7 @@ class SimpleProgressbar
   end
 
   def progress(percent)
-    print "\e[18D"
+    print "\e[#{15 + @last_length}D"
     render_progress(percent)
   end
 
@@ -24,12 +27,28 @@ class SimpleProgressbar
     print "["
 
     (percent/10).to_i.times do 
-      print "*" 
+      print "*"
     end
     (10 - (percent/10).to_i).times do 
-      print " " 
+      print " "
     end
-    print "]\e[32m#{'%4s' % percent}\e[0m %"
+
+    if percent.class != Float
+      printable_percent = "%3s" % percent
+    else
+      non_decimal_digits = (Math.log(percent) / Math.log(10)).truncate + 1
+      printable_percent = (non_decimal_digits < 3 ? " " * (3 - non_decimal_digits) : "") + percent.to_s
+    end
+
+    print "]\e[32m #{printable_percent}\e[0m %"
+
+    new_length = printable_percent.length
+    if @last_length > new_length
+      print " " * (@last_length - new_length)
+      print "\e[#{@last_length - new_length}D"
+    end
+    @last_length = new_length
+
     STDOUT.flush
   end
 
