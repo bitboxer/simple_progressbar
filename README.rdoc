@@ -15,6 +15,10 @@ Usage:
       }  
     end
 
+In order to use it in Windows environments you will need to install win32console gem
+
+    gem install win32console
+    
 == Note on Patches/Pull Requests
  
 * Fork the project.
