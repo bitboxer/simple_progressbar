@@ -1,4 +1,6 @@
+require 'rbconfig'
 require 'rubygems/dependency_installer.rb'
+
 inst = Gem::DependencyInstaller.new
 begin
   inst.install "win32console" if RbConfig::CONFIG['host_os'] =~ /win32|w32|mingw/
