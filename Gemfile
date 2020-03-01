@@ -3,5 +3,5 @@ source 'http://rubygems.org'
 
 group :development do
   gem 'jeweler'
-  gem 'rake'
+  gem "rake", ">= 12.3.3"
 end
