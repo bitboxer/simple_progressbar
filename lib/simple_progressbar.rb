@@ -1,3 +1,10 @@
+require 'rbconfig'
+begin
+  require 'Win32/Console/ANSI' if RbConfig::CONFIG['host_os'] =~ /win32|w32|mingw/
+rescue LoadError
+  raise 'You need to install win32console gem in order to use SimpleProgressbar on windows'
+end
+
 class SimpleProgressbar
   def initialize
     @last_length = 0
